@@ -1,4 +1,5 @@
 import 'package:asos/models/product_model.dart';
+import 'package:asos/pages/product_details.dart';
 import 'package:asos/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -67,9 +68,14 @@ class Product extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(builder: (context) => PaymentMethod());
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ProductDetails(
+                                products[index].name,
+                                products[index].photo,
+                                products[index].price,
+                                products[index].category,
+                                products[index].description)));
                       },
                       child: ProductCard(
                         products[index].photo,

@@ -2,6 +2,7 @@ import 'package:asos/models/cart_model.dart';
 import 'package:asos/models/product_model.dart';
 import 'package:asos/pages/cart.dart';
 import 'package:asos/pages/categories.dart';
+import 'package:asos/pages/product_details.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -367,9 +368,12 @@ class _HomepageState extends State<Homepage> {
                             current = index;
                             Navigator.push(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        Categories(categories[index].type)));
+                                MaterialPageRoute(builder: (context) => ProductDetails(
+                                    products[index].name,
+                                    products[index].photo,
+                                    products[index].price,
+                                    products[index].category,
+                                    products[index].description)));
                           });
                         },
                         child: ProductCard(

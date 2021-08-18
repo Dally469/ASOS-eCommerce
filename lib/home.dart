@@ -1,6 +1,7 @@
 import 'package:asos/pages/cart.dart';
 import 'package:asos/pages/homepage.dart';
 import 'package:asos/pages/products.dart';
+import 'package:asos/pages/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:asos/utils/colors.dart';
 import 'package:asos/utils/placeholder.dart';
@@ -20,7 +21,7 @@ class _HomeState extends State<Home> {
     Product("All Product","1"),
     Cart(),
     PlaceholderWidget(Colors.orange),
-    PlaceholderWidget(Colors.teal)
+    Profile()
   ];
 
   @override
@@ -47,7 +48,7 @@ class _HomeState extends State<Home> {
           SalomonBottomBarItem(
             icon: Icon(Icons.star),
             title: Text("Product"),
-            selectedColor: greenColor,
+            selectedColor: primaryColor,
           ),
 
           SalomonBottomBarItem(
