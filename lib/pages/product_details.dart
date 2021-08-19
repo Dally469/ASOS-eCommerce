@@ -153,7 +153,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                         color: primaryColor, shape: BoxShape.rectangle),
                     width: 150,
                     height: 30,
-                    child: Center(child: Text(widget.productCategory)),
+                    child: Center(child: Text(widget.productCategory, style: GoogleFonts.nunito(color: whiteColor))),
                   ),
                 ],
               )
