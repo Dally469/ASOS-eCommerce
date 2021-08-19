@@ -2,6 +2,7 @@ import 'package:asos/models/product_model.dart';
 import 'package:asos/pages/product_details.dart';
 import 'package:asos/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
@@ -61,33 +62,40 @@ class Product extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(15),
               height: MediaQuery.of(context).size.height,
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, mainAxisSpacing: 10),
-                  itemCount: products.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ProductDetails(
-                                products[index].name,
-                                products[index].photo,
-                                products[index].price,
-                                products[index].category,
-                                products[index].description)));
-                      },
-                      child: ProductCard(
-                        products[index].photo,
-                        products[index].name,
-                        products[index].type,
-                        products[index].category,
-                        products[index].price,
-                        products[index].discount,
-                        products[index].description,
-                      ),
-                    );
-                  }),
+              child: Expanded(
+                child: StaggeredGridView.countBuilder(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 7,
+                    crossAxisSpacing: 7,
+                    itemCount: products.length,
+                    itemBuilder: (context, index){
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProductDetails(
+                                  products[index].name,
+                                  products[index].photo,
+                                  products[index].price,
+                                  products[index].category,
+                                  products[index].description)));
+                        },
+                        child: ProductCard(
+                          products[index].photo,
+                          products[index].name,
+                          products[index].type,
+                          products[index].category,
+                          products[index].price,
+                          products[index].discount,
+                          products[index].description,
+                        ),
+                      );
+                    },
+                    staggeredTileBuilder: (index) {
+                      return StaggeredTile.fit(1);
+                    }
+                ),
+              ),
             )
           ],
         )
@@ -127,7 +135,7 @@ class _ProductCardState extends State<ProductCard> {
             Container(
               margin: EdgeInsets.only(right: 5),
               width: 150,
-              height: 200,
+              height: 220,
               decoration: BoxDecoration(boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.2),
@@ -142,9 +150,9 @@ class _ProductCardState extends State<ProductCard> {
                   FittedBox(
                     fit: BoxFit.fill,
                     child: Container(
-                      height: 80,
+                      height: 130,
                       width: 150,
-                      margin: EdgeInsets.all(10),
+                      margin: EdgeInsets.all(5),
                       decoration: BoxDecoration(
                         shape: BoxShape.rectangle,
                         image: DecorationImage(

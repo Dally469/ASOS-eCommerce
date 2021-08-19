@@ -1,6 +1,8 @@
 import 'package:asos/models/product_model.dart';
 import 'package:asos/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class ProductDetails extends StatefulWidget {
   final String productName;
@@ -17,98 +19,120 @@ class ProductDetails extends StatefulWidget {
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
+  final formatCurrency = new NumberFormat.simpleCurrency();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          appBar(),
-          Container(margin: EdgeInsets.all(20), child: hero()),
+      appBar: AppBar(
+        leading:IconButton(
+            onPressed: () {
 
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              widget.productCategory,
-              style: TextStyle(fontWeight: FontWeight.w800, fontSize: 18, color: orangeColor),
-            ),
-          ),
-          Container(
-              child: Text(
-                widget.productDesc,
-                textAlign: TextAlign.justify,
-                style: TextStyle(height: 1.5, fontSize: 20, color: Color(0xFF6F8398)),
-              ),
-              padding: EdgeInsets.all(16)),
-          Property(),
-        ],
+            },
+            icon: Icon(
+              Icons.arrow_back,
+              size: 27,
+              color: primaryColor,
+            )),
+        title: Text(
+          widget.productName.length >= 35
+              ? widget.productName.substring(0, 30) + "..."
+              : widget.productName,
+          style: GoogleFonts.nunito(color: primaryColor),
+        ),
+        elevation: 0,
+        backgroundColor: whiteColor,
       ),
-    ));
-  }
+      body: Stack(children: [
+        ListView(
+          physics: ClampingScrollPhysics(),
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 0, right: 0, bottom: 8, top: 0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    width: double.infinity,
+                    height: 320,
+                    decoration: BoxDecoration(
+                        color: whiteColor,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(70),
+                            bottomRight: Radius.circular(40))),
+                    child: Container(
 
-  Widget appBar() {
-    return Container(
-      padding: EdgeInsets.all(16),
-      width: MediaQuery.of(context).size.width,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          Icon(
-            Icons.arrow_back,
-            size: 30,
-          ),
-          Container(
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.rectangle,
+                        image: DecorationImage(
+                            image: AssetImage(widget.productPhoto), fit: BoxFit.cover),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+            Property(),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+
+                          Text(widget.productDesc)
+                        ],
+                      )
+                    ],
+                  ),
+
+                ],
+              ),
+            )
+
+          ],
+        ),
+        Positioned(
+          right: 20,
+          left: 20,
+          bottom: 0,
+          child: Container(
+            height: 50,
+            margin: EdgeInsets.all(10),
             child: Column(
-              children: <Widget>[
-                Text(
-                  widget.productName.length >= 35 ? widget.productName.substring(0, 23)+".." : widget.productName ,
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2F2F3E)),
-                ),
+              children: [
+
+                SizedBox(
+                  width: double.infinity,
+                  child: RaisedButton(
+                    color: blackColor,
+                    hoverColor: greenColor,
+                    textColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22)),
+                    onPressed: () {},
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text('Add Cart',
+                          style: GoogleFonts.nunito(fontSize: 22)),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
-          Icon(
-            Icons.shopping_bag,
-            size: 30,
-          ),
-        ],
-      ),
+        ),
+
+      ]),
     );
   }
 
-  Widget hero() {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        shape: BoxShape.rectangle,
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-            image: AssetImage(widget.productPhoto), fit: BoxFit.cover),
-      ),
-      child: Stack(
-        children: <Widget>[
-         
-          Positioned(
-            child: FloatingActionButton(
-                elevation: 2,
-                child: Image.asset(
-                  "assets/images/sports.png",
-                  width: 30,
-                  height: 30,
-                ),
-                backgroundColor: Colors.white,
-                onPressed: () {}),
-            bottom: 0,
-            right: 20,
-          ),
-        ],
-      ),
-    );
-  }
+
 
   Widget Property() {
     return Container(
@@ -119,36 +143,17 @@ class _ProductDetailsState extends State<ProductDetails> {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Text("Color"),
               Row(
                 children: <Widget>[
+
                   Container(
+                    margin: EdgeInsets.symmetric(vertical: 10),
                     decoration: BoxDecoration(
-                        color: Colors.red, shape: BoxShape.circle),
-                    width: 30,
+                      borderRadius: BorderRadius.circular(15),
+                        color: primaryColor, shape: BoxShape.rectangle),
+                    width: 150,
                     height: 30,
-                    margin: EdgeInsets.all(5),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.green, shape: BoxShape.circle),
-                    width: 30,
-                    height: 30,
-                    margin: EdgeInsets.all(5),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.yellow, shape: BoxShape.circle),
-                    width: 30,
-                    height: 30,
-                    margin: EdgeInsets.all(5),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.pink, shape: BoxShape.circle),
-                    width: 30,
-                    height: 30,
-                    margin: EdgeInsets.all(5),
+                    child: Center(child: Text(widget.productCategory)),
                   ),
                 ],
               )
@@ -156,11 +161,10 @@ class _ProductDetailsState extends State<ProductDetails> {
           ),
           Column(
             children: <Widget>[
-              Text("Price"),
               Text(
-                widget.productPrice,
+                '${formatCurrency.format(int.parse(widget.productPrice))}',
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF2F2F3E)),
               )

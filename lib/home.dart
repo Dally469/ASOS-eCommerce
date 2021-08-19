@@ -1,5 +1,6 @@
 import 'package:asos/pages/cart.dart';
 import 'package:asos/pages/homepage.dart';
+import 'package:asos/pages/orders.dart';
 import 'package:asos/pages/products.dart';
 import 'package:asos/pages/profile.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _HomeState extends State<Home> {
     Homepage(),
     Product("All Product","1"),
     Cart(),
-    PlaceholderWidget(Colors.orange),
+    Orders(),
     Profile()
   ];
 

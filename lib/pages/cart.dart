@@ -1,5 +1,6 @@
 import 'package:asos/models/cart_model.dart';
 import 'package:asos/models/product_model.dart';
+import 'package:asos/pages/checkout.dart';
 import 'package:asos/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -123,27 +124,16 @@ class _CartState extends State<Cart> {
                                         image: AssetImage(carts[index].photo))),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: (){
-                                setState(() {
-                                  // if(carts.contains(item)){
-                                  //   carts.remove(item);
-                                  // }else{
-                                  //   carts.add(item);
-                                  // }
-                                });
-                              },
-                              child: Positioned(
-                                right: 10,
-                                top: 10,
-                                bottom: 10,
-                                child: Container(
-                                  height: 25,
-                                  width: 25,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle, color: redColor),
-                                  child: Icon(Icons.delete_forever, color: whiteColor, size: 18,),
-                                ),
+                            Positioned(
+                              right: 10,
+                              top: 10,
+                              bottom: 10,
+                              child: Container(
+                                height: 25,
+                                width: 25,
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle, color: redColor),
+                                child: Icon(Icons.delete_forever, color: whiteColor, size: 18,),
                               ),
                             ),
                           ],
@@ -233,7 +223,13 @@ class _CartState extends State<Cart> {
                     textColor: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                   builder: (context) =>
+                                       Checkout()));
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text('Checkout',

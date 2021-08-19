@@ -70,4 +70,22 @@ var cardData = [
     "discount": "21",
     "description": "Product description",
   },
+  {
+    "photo": "assets/images/legg.png",
+    "name": "Everest Face Expedition Legging in purple",
+    "type": "1",
+    "category": "Legging",
+    "price": "30",
+    "discount": "21",
+    "description": "Product description",
+  },
+  {
+    "photo": "assets/images/wmen.png",
+    "name": "Women",
+    "type": "1",
+    "category": "Pants",
+    "price": "21",
+    "discount": "21",
+    "description": "Product description",
+  },
 ];
