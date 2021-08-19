@@ -1,4 +1,5 @@
 import 'package:asos/models/product_model.dart';
+import 'package:asos/pages/cart.dart';
 import 'package:asos/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -115,7 +116,13 @@ class _ProductDetailsState extends State<ProductDetails> {
                     textColor: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(22)),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  Cart()));
+                    },
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text('Add Cart',
