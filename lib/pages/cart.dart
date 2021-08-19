@@ -1,5 +1,5 @@
 import 'package:asos/models/cart_model.dart';
-import 'package:asos/models/product_model.dart';
+import 'package:asos/models/cart_item.dart';
 import 'package:asos/pages/checkout.dart';
 import 'package:asos/utils/colors.dart';
 import 'package:flutter/cupertino.dart';
